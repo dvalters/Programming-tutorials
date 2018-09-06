@@ -6,6 +6,14 @@ The tutorials in [coding-club-format-tutorials](https://github.com/dvalters/Prog
 
 I usually keep a Jupyter notebook format (for python) as well which is based on the tutorial material - this contains the same material but without the markup and HTML required for rendering on the OurCodingClub website.
 
+## Conference tutorials (90 mins)
+
+**Parallelism with Python**
+
+This tutorial can be used in a 90 minute session and is made up of four short tutorials that introduce a parallel programming module in Python. (Multiprocessing, Numba, Cython and MPI4py)
+
+[Parallel programming with Python](https://github.com/dvalters/RSE18-Python-Parallel-workshop)
+
 ## Taster workshops (~2 hours)
 
 **Introduction to Python** 
