@@ -14,6 +14,8 @@ This tutorial can be used in a 90 minute session and is made up of four short tu
 
 [Parallel programming with Python](https://github.com/dvalters/RSE18-Python-Parallel-workshop)
 
+This was delivered at EuroSciPy 2018 and the Research Software Engineer's conference, 2018.
+
 ## Taster workshops (~2 hours)
 
 **Introduction to Python** 
