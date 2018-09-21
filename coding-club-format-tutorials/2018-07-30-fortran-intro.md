@@ -28,9 +28,22 @@ tags: fortran
 
 <a name="understanding"></a>
 
+## What is Fortran?
+
+Fortran is a computer programming language that is extensively used in numerical, scientific computing. While outwith the scientific community, Fortran has declined in popularity over the years, it still has a strong user base with scientific programmers, and is also used in organisations such as weather forecasters, financial trading, and in engineering simulations. Fortran programs can be highly optimised to run on high performance computers, and in general the language is suited to producing code where performance is important. 
+Fortran is a _compiled_ language, or more specifically it is compiled ahead-of-time. In other words, you must perform a special step called *compilation* of your written code before you are able to run it on a computer. This is where Fortran differs to *interpreted* languages such as Python and R which run through an interpreter which executes the instructions directly, but at the cost of compute speed.
+
 <a name="history"></a>
 
+## A brief Fortran history
+
+Fortran was originally named after the contraction of *Formula Translation*, highlighting Fortran's origins as a language designed specifically for mathematical calculations. Fortran was developed in the early 1950s and the first ever Fortran program ran in 1954 - making Fortran fairly unusual among programming languages in that it predates the modern _transistor_ computer - the first Fortran program ran on the IBM 704 vacuum tube computer! Fortran has outlived several nation states since its conception, and still is in wide use today in a number of specialised scientific communities. Unfortunately Fortran is often referred to as an 'outdated' or 'legacy' programming language. I disagree with this description, as although Fortran has a long history, the language continues to be updated, new features are developed and added to the Fortran language standard, and there is still a strong community behind Fortran. The latest Fortran standard was released in 2018, bringing many new features and keeping fortran a relevnat, highly performant language for contemporary scientific computing challenges.
+
 <a name="feeling"></a>
+
+## Getting a feel for Fortran
+
+Perhaps you have previously used other programming languages, such as Python, R, or MATLAB, which have developed with easy to understand syntax in mind, and with a programming style that favours more rapid development time at the expense of computational performance. Fortran will seem different to these languages in many ways, but the principles of programming remain broadly the same, and some syntax is shared or similar to elements of other programming languages.
 
 <a name="basics"></a>
 
