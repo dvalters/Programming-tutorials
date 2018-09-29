@@ -45,6 +45,51 @@ Fortran was originally named after the contraction of *Formula Translation*, hig
 
 Perhaps you have previously used other programming languages, such as Python, R, or MATLAB, which have developed with easy to understand syntax in mind, and with a programming style that favours more rapid development time at the expense of computational performance. Fortran will seem different to these languages in many ways, but the principles of programming remain broadly the same, and some syntax is shared or similar to elements of other programming languages.
 
+We are going to start with a 'high-level' view of a very simple Fortran program. Don't worry about every piece of syntax and keyword at the minute - we're just going to look at the overall general structure.
+
+This program calculates the area of a triangle using Heron's formula, i.e. : https://pages.mtu.edu/~shene/COURSES/cs201/NOTES/chap03/heron.html
+
+```fortran
+! ------------------------------------------------------
+! Compute the area of a triangle using Heron's formula
+! ------------------------------------------------------
+
+PROGRAM  HeronFormula
+   IMPLICIT  NONE
+
+   REAL     :: a, b, c             ! three sides
+   REAL     :: s                   ! half of perimeter
+   REAL     :: Area                ! triangle area
+   LOGICAL  :: Cond_1, Cond_2      ! two logical conditions
+
+   READ(*,*)  a, b, c
+
+   WRITE(*,*)  "a = ", a
+   WRITE(*,*)  "b = ", b
+   WRITE(*,*)  "c = ", c
+   WRITE(*,*)
+
+   Cond_1 = (a > 0.) .AND. (b > 0.) .AND. (c > 0.0)
+   Cond_2 = (a+b > c) .AND. (a+c > b) .AND. (b+c > a)
+   IF (Cond_1 .AND. Cond_2) THEN
+      s    = (a + b + c) / 2.0
+      Area = SQRT(s*(s-a)*(s-b)*(s-c))
+      WRITE(*,*) "Triangle area = ", Area
+   ELSE
+      WRITE(*,*) "ERROR: this is not a triangle!"
+   END IF
+
+END PROGRAM  HeronFormula
+```
+
+Lines 1-3:
+
+The first three lines are comment lines - you will hopefully find a lot of these in Fortran programs you are given, and in the ones you write yourself. Comment lines are just notes or explanations that help the programmer and the user. They are never executed by the computer and you can write whatever you like within any line marked as a comment. In Fortran this is the exclamation mark (!). Any line beginning with an exclamtion mark will be ignored by the computer when the program runs. Comments help the user to understand more complicated bits of code by providing a more human-readable explanation, or perhaps giving an example of how to use the code.
+
+Line 5: Begin the program! Fortran is quite a verbose language, in other words, we have to be quite explicit in telling it what we are about to do (Contrast with Python and R which are said to be more dynamic or intuitive languages and meaning can often be inferred.)
+
+So here we are just telling fortran that we wish to begin our program, and we can optionally give it a name. Skip down to the last line: notice how we also have an "END PROGRAM" statement. Fortran likes to keep things balanced and know exactly when you have ended sections of code. You will see the END statement used often to demarcate sections of the code such as loops, functions, and so on.
+
 <a name="basics"></a>
 
 <a name="compiling"></a>
