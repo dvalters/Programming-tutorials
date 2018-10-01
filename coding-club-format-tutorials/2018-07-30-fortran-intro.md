@@ -90,7 +90,33 @@ Line 5: Begin the program! Fortran is quite a verbose language, in other words, 
 
 So here we are just telling fortran that we wish to begin our program, and we can optionally give it a name. Skip down to the last line: notice how we also have an "END PROGRAM" statement. Fortran likes to keep things balanced and know exactly when you have ended sections of code. You will see the END statement used often to demarcate sections of the code such as loops, functions, and so on.
 
+The next section of the program (lines 6-17) is where we define the variables to be used in the program. In Fortran programs, you will almost always see these defined at the very top of the program, unlike in other languages where you can define them as you go along. Fortran likes to know at the start which variables it is dealing with. We will cover what the different types are in the next section. Note also how we have added comments to explain in more human-readable format what each variable does.
+
+The remaining bit of the program is the actual bit where the area of the triangle is calculated. Our pre-declared variables have values assigned to them using common mathematical operators and fucntions. (*, /, +, -, SQRT, etc...) and we also write out the result to the screen using the WRITE function. We also terminate our program using the END PROGRAM statement.
+
+This program would be saved like a plain-text file, but we would give it the extension `.f90`. (By convention). To run the program, we would first need to compile it, which is covered in a later section of the tutorial.
+ 
+
 <a name="basics"></a>
+
+## Basics
+
+Fortran has a set of rules used to determine whether a program is valid and can be understood by the computer, a bit like a human language. The combination of keywords and characters that are used to form Fortran programs are usually referred to as the language's _syntax_. Using the above triangle program as a starting point, we will cover the very basic syntax of the Fortran language. 
+
+### Program structure
+
+Fortran programs begin with the `PROGRAM` keyword, followed, optionally, by a name for the program. The end of the program should also be marked by `END PROGRAM`.
+
+e.g.:
+
+```fortran
+PROGRAM MyProgram
+  ! Do some stuff here
+END PROGRAM MyProgram
+```
+
+### Defining variables
+
 
 <a name="compiling"></a>
 
