@@ -70,10 +70,10 @@ PROGRAM  HeronFormula
    WRITE(*,*)
 
    Cond_1 = (a > 0.) .AND. (b > 0.) .AND. (c > 0.0)
-   Cond_2 = (a+b > c) .AND. (a+c > b) .AND. (b+c > a)
+   Cond_2 = (a + b > c) .AND. (a + c > b) .AND. (b + c > a)
    IF (Cond_1 .AND. Cond_2) THEN
       s    = (a + b + c) / 2.0
-      Area = SQRT(s*(s-a)*(s-b)*(s-c))
+      Area = SQRT(s * (s - a) * (s - b) * (s - c))
       WRITE(*,*) "Triangle area = ", Area
    ELSE
       WRITE(*,*) "ERROR: this is not a triangle!"
@@ -94,7 +94,7 @@ The next section of the program (lines 6-17) is where we define the variables to
 
 The remaining bit of the program is the actual bit where the area of the triangle is calculated. Our pre-declared variables have values assigned to them using common mathematical operators and fucntions. (*, /, +, -, SQRT, etc...) and we also write out the result to the screen using the WRITE function. We also terminate our program using the END PROGRAM statement.
 
-This program would be saved like a plain-text file, but we would give it the extension `.f90`. (By convention). To run the program, we would first need to compile it, which is covered in a later section of the tutorial.
+This program would be saved like a plain-text file, but we would give it the extension `.f90`. (By convention). To run the program, we would first need to _compile_ it, which is covered in a later section of the tutorial.
  
 
 <a name="basics"></a>
@@ -115,7 +115,94 @@ PROGRAM MyProgram
 END PROGRAM MyProgram
 ```
 
+Within the `PROGRAM` statements, your Fortran program can define functions, declare variables to be used in these functions, just like in other programming languages such as R or Python. Within these statements, this is where the calculations on data are performed in the program. 
+
 ### Defining variables
+
+Variables represent data or values used in your program. A variable can represent a single value, like the expression `x = 3`, or a variable can refer to a larger structure for holding data, such as a table or a list of values. Variables can also be used to store non-numeric values such as text, letters, and words, for example. 
+
+We refer to variables in Fortran as having certain _Types_. A type describes what kind of data the variable is expected to contain. For example, the expression `x = 3` we could say that x refers to a _number_, i.e. the number 3. If we had something like: `x = "cat"`, we might say that x refers to some _characters_ or _letters_. These are examples of how we could describe our variables using keywords to keep track of what kind of data we are using.
+
+In Fortran, we are required to be specific about what kind of data our variables are. Fortran has a set of keywords that are used to define the different types of variables. For example to define some _INTEGER_ variables for use in a later calculation, we would write in Fortran:
+
+```fortran
+INTEGER :: n = 3
+INTEGER :: m = 6
+```
+
+We are saying with these statements that we want to create two integers, `n` and `m` and that they will be assigned the values 3 and 6 respectively. (We can delay assigning values until later on in the program, if necessary.)
+
+Fortran has different types for numeric values. For example, if our calculations required non-integer numbers, such as 3.141, we would use a type called _REAL_. I.e. a real number.
+
+```fortran
+REAL :: x = 1.0
+REAL :: pi = 3.141
+```
+
+Once we have create variables in a Fortran program, we can manipulate them and change them.
+
+Variables in fortran are usually defined in the first few lines of the program or a function, like in our example program above. There is one more type that is introduced in the example program, the `LOGICAL` type. This type refers to variables that are used as True or False values. 
+
+```fortran
+LOGICAL :: Cond_1, Cond_2
+```
+
+Note that we can can define multiple variables on the same line, separated by a comma. This saves space and typing, and would be the equivalent of writing:
+
+```fortran
+LOGICAL :: Cond_1
+LOGICAL :: Cond_2
+```
+
+Variable names may be made up of standard latin-alphabet characters, underscores, and numbers. Note that Fortran is *not* case-sensitive. Keywords and variable names may be written in uppercase or lowercase. Fortran does not distinguish between uppercase and lowercase names, so be careful of using them in variable names. For example: `Cond_1` is the same as `cond_1`.
+
+By convention, you will often see Fortran keywords written in `UPPERCASE`, though this is not a requirement. For example, REAL, INTEGER, IF, ELSE, PROGRAM, and so on. You can chose to use either uppercase or lowercase, but it is good practice to be consistent in their use, for readability.
+
+### Displaying messages and values
+
+When you are running a Fortran program, the easiest way to see the results of the calculation or other outputs are to print them to the terminal, command line, or console. (These are all terms used interchangeably to refer to the same thing - the window where commands can be entered and text is printed out to screen.)
+
+You also need a way of inputting data to the program. This can also be done (for this simple example program) by typing the values directly into the terminal from the keyboard. (In a later tutorial we may cover reading information in from text files).
+
+Fortran has two useful functions that will get you started in reading-in and displaying data and messages to the screen: the `READ` function and the `WRITE` function.
+
+#### `READ`
+
+The `READ` function tells the fortran program to record the values you enter via the keyboard and store them in variables that you define in your program. In our example triangle program we use `READ` like this:
+
+```fortran
+READ(*,*)  a, b, c
+```
+
+In Fortran functions, any inputs needed for the function are placed inside a list within the two round-brackets (parentheses), as in `READ(input1, input2, etc...)`. In `READ`, The first asterisk (*) means the input comes from the keyboard in a READ statement and goes to the screen in a WRITE statement. The second asterisk (*) means the computer decides how the I/O elements should look based on the TYPE of data in the list of variables that follow.
+
+The list of variables that follow will be assigned the values that you type, one at a time. So in our program we have three variables (a, b, c) that we have already defined earlier on. When the program is running and gets to the READ statement, it will prompt you to enter a variable and press enter. This will happen three times, and each value you type will be assigned to `a`, `b` and `c` respectively.
+
+The WRITE function is very similar, but it just prints out the variables to the screen, in the order specified. So:
+
+```fortran
+WRITE(*,*) a, b, c
+```
+
+Would print out the values assigned to a, b, and c.
+
+### Mathematical operations
+
+Fortran is designed primarily for numerical calculations, and it has many built-in functions for mathematical operations. In the example triangle-area program, we use the basic functions: `+, -, *, /` for addition, subtraction, multiplication, and division. There is one other that we use in the above example, `SQRT()`, which finds the square root of a number. 
+
+### Logical expressions
+
+Logical expressions are statements like "If A and B are TRUE, then do C", or "If value X is less than 10, then divide X by Y". They are ways of controlling the behaviour of a program based on comparisons or truth-values (LOGICAL types in Fortran.) 
+
+The next part of the triangle-program, after the READ and WRITE statements, starts to calculate two conditions (tru/false values) for the last part of the calculation:
+
+```fortran
+Cond_1 = (a > 0.0) .AND. (b > 0.0) .AND. (c > 0.0)
+Cond_2 = (a + b > c) .AND. (a + c > b) .AND. (b + c > a)
+```
+
+Recall that `Cond_1` and `Cond_2` are `LOGICAL` types, i.e. they can either be TRUE or FALSE. 
+
 
 
 <a name="compiling"></a>
