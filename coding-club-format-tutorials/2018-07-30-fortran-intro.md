@@ -203,6 +203,37 @@ Cond_2 = (a + b > c) .AND. (a + c > b) .AND. (b + c > a)
 
 Recall that `Cond_1` and `Cond_2` are `LOGICAL` types, i.e. they can either be TRUE or FALSE. 
 
+The true or false value assigned to these two variables will depend on the outcome of evaluating the expression on the right hand side of the equals sign.
+
+Two logical operators are used in this example: the greater-than operator `>` and the `.AND.` operator. Greater than behaves in the same way as its mathematical counterpart. E.g. `1 > 2` would give the answer FALSE, because one is not greater than two. 
+
+The `.AND.` operator checks to see if both expressions either side are true or false. E.g. `(1 < 2) .AND. (3 < 4)` would return TRUE because both expressions are TRUE. Notice that we can use brackets, similalrly in a mathematical context, to state the order in which we want expression to be evaluated. First the computer will evaluate the expression in the brackets, before proceding to evaluating the `.AND.` expression(s) as a whole.
+
+The outcome of these two lines (TRUE/FALSE) will depend on the inputs you give the program when it runs, which we will come to soon.
+
+### Making decisions in a program
+
+All but the most trivial programs will have to make decisions depending on the type of data input or the results of a calculation. We can refer to this as the program flow or program logic. It is a bit like the logical decisions we make in everyday life:
+
+"IF it is raining today, THEN I will take my umbrella with me, or ELSE I will take my sunhat."
+
+The words in uppercase also happen to be the same keywords Fortran uses to control the logical flow of a program depending on different conditions.
+
+Let's look at the final section of the triangle-area program:
+
+
+```fortran
+   Cond_1 = (a > 0.) .AND. (b > 0.) .AND. (c > 0.0)
+   Cond_2 = (a + b > c) .AND. (a + c > b) .AND. (b + c > a)
+   IF (Cond_1 .AND. Cond_2) THEN
+      s    = (a + b + c) / 2.0
+      Area = SQRT(s * (s - a) * (s - b) * (s - c))
+      WRITE(*,*) "Triangle area = ", Area
+   ELSE
+      WRITE(*,*) "ERROR: this is not a triangle!"
+   END IF
+```
+
 
 
 <a name="compiling"></a>
