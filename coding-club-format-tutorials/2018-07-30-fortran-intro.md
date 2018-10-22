@@ -223,8 +223,6 @@ Let's look at the final section of the triangle-area program:
 
 
 ```fortran
-   Cond_1 = (a > 0.) .AND. (b > 0.) .AND. (c > 0.0)
-   Cond_2 = (a + b > c) .AND. (a + c > b) .AND. (b + c > a)
    IF (Cond_1 .AND. Cond_2) THEN
       s    = (a + b + c) / 2.0
       Area = SQRT(s * (s - a) * (s - b) * (s - c))
@@ -234,22 +232,109 @@ Let's look at the final section of the triangle-area program:
    END IF
 ```
 
+#### The IF and THEN statements
+
+Fortran uses these two keywords to make logical decisions within a program. To do something based on a condition being met, the `IF [CONDITION(S)...] THEN` construct is used. The condition part that follows the IF statement may be a single LOGICAL variable, or a logical expression itself (such as in our example). The `THEN` keyword marks the start of the code that will be executed if the condition is true. 
+
+#### The ELSE statement
+
+The `ELSE` statement is optional, but useful if you have an action you want to perform if the condition is false. If this optional section is not provided, the program will simply move on to the next section of code without taking further action. We use an `ELSE` statement here to print an error message if our inputs indicate we are not dealing with a triangle. 
+
+#### Ending the IF block
+
+You must remember to mark the end of the `IF...THEN...ELSE` block with an `END IF` statement.
+
+#### Wrapping it up
+
+That is the end of our triangle area program. There is a final `END PROGRAM` statement to mark the end of the program, telling Fortran that we have done. 
+
+But how do we execute (run) the program? Ww cover this in the next section...
 
 
 <a name="compiling"></a>
 
-<a name="structure"></a>
+## Compilation
+
+Fortran programs have an extra step required before you can run or 'execute' them. Once the program has been written and saved as a plain-text file, we must convert it into a format that the computer hardware can understand and process. This stage is called _compilation_ - we are compiling our program into a format suitable for the computer we wish to run it on. 
+
+If you have come from a background in using langauges such as R, Python, or MATLAB, you may not have encountered this compilation stage before, as the usual method of running programs written in these languages hides away the compilation stage from the user. These types of languages (R, Python, etc.) are sometimes described as _interpreted_ languages. The program is run through a special program called the _interpreter_, and this does all the compilation dynamically,or at _run-time_. 
+
+Fortran, being optimised for fast, numerical computation, requires the user to perform the compilation step themselves, which allows fine tuning of the optimisation options of the program and many other customisations of the final program.
+
+We are going to learn in this section how to compile our sample program.
+
+### Example: Compiling the triangle program
+
+To compile our program, make sure you have saved the sample triangle-area program from earlier in the tutorial. Save it as `triangle.f90`.
+
+You will need to be running Linux for this particular example. (It is possible to compile Fortran on Windows and MacOS as well, but the command names may be slightly different). If you are on Windows but have access to a Linux server via your institution it is advised to use that for the next part.
+
+##### 1. Open a command-line/terminal session. In the prompt, check that you have the `gfortran` compiler program available by typing `gfortran --version`. Hopefully this will return the version number if it is installed. (If not, you will get an error message)
+
+```
+[dvalters@baltic01 Programming-tutorials]$ gfortran --version
+GNU Fortran (GCC) 4.8.5 20150623 (Red Hat 4.8.5-28)
+Copyright (C) 2015 Free Software Foundation, Inc.
+
+GNU Fortran comes with NO WARRANTY, to the extent permitted by law.
+You may redistribute copies of GNU Fortran
+under the terms of the GNU General Public License.
+For more information about these matters, see the file named COPYING
+```
+
+##### 2. In the same directory as you saved the .f90 file, run the following command
+
+```
+gfortran triangle.f90 -o triangle
+```
+
+This tells gfortran (a fortran compiler, commonly found on Linux operating sytems) to take the file `triangle.f90` and produce a program called `triangle` for us to run. The `-o` flag lets us specify an output name for our program.
+
+When you have run this command, you should now find another item in the directory you ran the command from - the `triangle` progrom executable.
+
+##### 3. Run the program
+
+To run this (in Linux), type `./triangle`. The program should start running. You can now enter your three values, each time pressing the ENTER key to enter the value. After pressing enter after the third value, the program will calculate the area of the triangle using Herron's Formula. 
+
+Try running the program a few times with different lengths of the triangle sides. What happens when the values are not correct for a triangle? Do you get the expected error message defined above.
+
+
+<a name="tasks"></a>
+
+## Exercises
+
+Now we know how to write, compile, and run a simple Fortran program, lets experiment with modifying and writing our own code.
+
+Everytime you modify the code, you will need to re-run the compilation step above.
+
+##### 1. Add a message to the screen when the program runs to remind users how to enter the data. (i.e. enter 3 values and press the return key.)  
+
+##### 2. Add a test at the end of the code to check whether the triangle is right-angled. (Using the Pythagoreas Theorem: a^2 = b^2 + c^2). If it is true, print out a message to the user confirming this after the area is calculated.
+
+#### Independent coding
+
+##### 3. Write a program that converts the number of seconds (entered by the user) into hour, minutes, and seconds, and then prints these out to screen.
+
+##### 4. Write a program that will read in an integer value and check if it is less than, equal to, or greater than zero.
+
+##### 5. Using the previous program, extend it so it reads in five integers and checks each one of them in turn.
+
+##### 6. Write a program that will calculate the the third side of a triangle, given the two other sides. You could use the cosine rule: `C^2 = A^2 + B^2 - 2*A*B*cos(theta)`. Hint: The fortran function for cosine is COS(theta), where theta is the value stored as a variable.
 
 
 # Summary
 
 ### Tutorial outcomes:
 
-#### 1.
+#### 1. Understand what the Fortran programming language is and a little bit about its history.
 
-#### 2.
+#### 2. Understand the basic structure of a Fortran program
 
-#### 3.
+#### 3. Learn some of the basic Fortran syntax
+
+#### 4. Compile and run a Fortran program
+
+#### 5. Modify and write your own simple programs
 
 
 <hr>
